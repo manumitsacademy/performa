@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,17 +16,18 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+        <div className="pages d-flex flex-column">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+			  <Link className="navbar-brand" to="/">Performa</Link>
+            <ul class="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/about">About</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">About</Link>
               </li>
-              <li>
-                <Link to="/users">Users</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users">Users</Link>
               </li>
             </ul>
           </nav>
