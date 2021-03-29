@@ -22,3 +22,7 @@ code {
 	padding: 5%;
 	border-radius: 10px;
 }
+
+.error {
+	font-size: 80%;
+}
