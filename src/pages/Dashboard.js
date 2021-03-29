@@ -32,19 +32,19 @@ const Dashboard = (props) => {
 				<h4>Welcome {props.user.username}!</h4>
 				<button className="btn btn-danger" onClick={logout}>Logout</button>
 			</div>
-			<ul class="nav row">
+			<ul class="nav row w-50 justify-content-between">
 				<li className="nav-item">
-					<Link className="nav-link" to="/addSubject">
+					<Link className="nav-link btn btn-outline-primary" to="/addSubject">
 						Add Subject
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link className="nav-link" to="/addExam">
+					<Link className="nav-link btn btn-outline-primary" to="/addExam">
 						Add Exam
 					</Link>
 				</li>
 				<li className="nav-item">
-					<Link className="nav-link" to="/addMarks">
+					<Link className="nav-link btn btn-outline-primary" to="/addMarks">
 						Add Marks
 					</Link>
 				</li>
