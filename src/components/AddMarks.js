@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 const AddMarks = () => {
 	let history = useHistory();
 	let [subjects, setSubjects] = React.useState([]);
-	let [exams, setExams] = React.useState([]);
+	let [allexams, setAllExams] = React.useState([]);
+    let [exams,setExams ] = React.useState([]);
 	React.useEffect(() => {
 		fetch("http://localhost:3400/subjects")
 			.then((res) => {
@@ -21,9 +22,11 @@ const AddMarks = () => {
 				return res.json();
 			})
 			.then((data) => {
-				setExams(data);
+				setAllExams(data);
+                setExams(data);
 			});
 	}, []);
+    
 	const formik = useFormik({
 		initialValues: {
 			subjectname: "",
@@ -50,6 +53,18 @@ const AddMarks = () => {
 				});
 		},
 	});
+    React.useEffect(()=>{
+        console.log("formik.subjectname",formik.values.subjectname);
+        var examsOfSelectedSubject = allexams.filter((e,i)=>{
+            if(e.subjectname === formik.values.subjectname){
+                return true
+            }
+            else{
+                return false
+            }
+        });
+        setExams(examsOfSelectedSubject);
+    },[formik.values.subjectname])
 	return (
 		<div className="container flex-grow-1 d-flex justify-content-center align-items-center">
 			<form onSubmit={formik.handleSubmit} className="w-50 form-container">
@@ -69,8 +84,9 @@ const AddMarks = () => {
 					<>
 						<div className="form-group">
 						<label htmlFor="examtitle">Exam Title</label>
-						<select className="form-control" onChange={formik.handleChange} value={formik.values.examtitle} name="examtitle" id="examtitle">
-							<option disabled selected value="">
+						<select className="form-control" onChange={formik.handleChange} value={formik.values.examtitle} 
+                        name="examtitle" id="examtitle">
+							<option disabled defaultValue="">
 								Please select Exam
 							</option>
 							{exams &&
